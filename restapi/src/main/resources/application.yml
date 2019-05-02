@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/SIDE_JOB?characterEncoding=UTF-8&serverTimezone=JST
+    username: side_job
+    password: 
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+
+logging:
+  file:
+    logs/myapp.log
+  level:
+    org:
+      springframework:
+        web:
+          INFO
