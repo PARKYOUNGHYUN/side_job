@@ -30,9 +30,7 @@ public class EntryProgressService {
     public EntryProgress patchEntryProgress(EntryProgress progress){
         final Optional<EntryProgress> fetchProgress = entryProgressRepository.findById(progress.getEpId());
         if(fetchProgress.isPresent()){
-            if(progress.getEntryStatus() > 0 
-                && progress.getEntryStatus() != fetchProgress.get().getEntryStatus())
-                fetchProgress.get().setEntryStatus(progress.getEntryStatus());
+            if(progress.getEntryStatus() > 0) fetchProgress.get().setEntryStatus(progress.getEntryStatus());
             return entryProgressRepository.save(fetchProgress.get());
         }
         else return null;

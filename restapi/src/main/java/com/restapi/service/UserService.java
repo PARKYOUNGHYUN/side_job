@@ -54,8 +54,7 @@ public class UserService {
         if(fetchedUser.isPresent()){
             if(user.getNickname() != null) fetchedUser.get().setNickname(user.getNickname());
             if(user.getMail() != null) fetchedUser.get().setMail(user.getMail());
-            if(user.getSex() > 0 && user.getSex() != fetchedUser.get().getSex())
-                fetchedUser.get().setSex(user.getSex());
+            if(user.getSex() > 0) fetchedUser.get().setSex(user.getSex());
             if(user.getBirth() != null) fetchedUser.get().setBirth(user.getBirth());
             if(user.getRegion() != null) fetchedUser.get().setRegion(user.getRegion());
             if(user.getPr() != null) fetchedUser.get().setPr(user.getPr());

@@ -18,6 +18,5 @@ public class PaymentDetailId implements Serializable {
   @Column(name = "board_no")
   private Long boardNo;
 
-  @Column(name = "board_no")
   private Long payer;
 }

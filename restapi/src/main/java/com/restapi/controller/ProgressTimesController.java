@@ -35,11 +35,11 @@ public class ProgressTimesController {
     /**
      * 進行可能時間検索
      *
-     * @param id 進行可能時間ID
+     * @param id ユーザ番号
      * @return 進行可能時間
      */
-    @GetMapping("{id}")
-    public List<ProgressTime> getTimeByUserNo(@PathVariable("id") Long userNo) {
+    @GetMapping("{userNo}")
+    public List<ProgressTime> getTimeByUserNo(@PathVariable("userNo") Long userNo) {
         return timeService.getProgressTimeByUserNo(userNo);
     }
 
