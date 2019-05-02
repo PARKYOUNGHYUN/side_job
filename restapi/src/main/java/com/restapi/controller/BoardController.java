@@ -79,22 +79,9 @@ public class BoardController {
      */
     @PatchMapping("{id}")
     public ResponseEntity<Board> patchBoard(@PathVariable("id") Long id, @RequestBody @Valid Board board) {
-        Board updateBoard = boardService.patchBoard(id, board); 
-        if(updateBoard != null)
-            return new ResponseEntity<Board>(updateBoard, HttpStatus.OK);
+        Board updatedBoard = boardService.patchBoard(id, board); 
+        if(updatedBoard != null)
+            return new ResponseEntity<Board>(updatedBoard, HttpStatus.OK);
         return new ResponseEntity<Board>(HttpStatus.NOT_FOUND);
     }
-
-    /**
-     * 掲示板削除
-     *
-     * @param id 削除したい掲示板ID
-     */
-    // @DeleteMapping("/boards/{id}")
-    // public ResponseEntity<?> deleteById(@PathVariable("id") String id) {
-    //     Board deleteBoard = boardRepository.findById(id).orElseThrow(() -> new NotFoundException(id + " is not found."));
-
-    //     boardRepository.delete(deleteBoard);
-    //     return ResponseEntity.ok().build();
-    // }
 }

@@ -65,9 +65,9 @@ public class ProgressTimesController {
      */
     @PatchMapping("{id}")
     public ResponseEntity<ProgressTime> patchTime(@PathVariable("id") Long id, @RequestBody @Valid ProgressTime time) {
-        ProgressTime updateTime = timeService.patchProgressTime(id, time); 
-        if(updateTime != null)
-            return new ResponseEntity<ProgressTime>(updateTime, HttpStatus.OK);
+        ProgressTime updatedTime = timeService.patchProgressTime(id, time); 
+        if(updatedTime != null)
+            return new ResponseEntity<ProgressTime>(updatedTime, HttpStatus.OK);
         return new ResponseEntity<ProgressTime>(HttpStatus.NOT_FOUND);
     }
 

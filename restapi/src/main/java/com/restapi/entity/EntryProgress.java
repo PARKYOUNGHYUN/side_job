@@ -31,6 +31,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 @Table(name = "entry_progress")
 public class EntryProgress implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @EmbeddedId
     private EntryProgressId epId;
 

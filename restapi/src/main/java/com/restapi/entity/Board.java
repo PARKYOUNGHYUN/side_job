@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,7 +14,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -30,8 +35,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @AllArgsConstructor
 @Entity
 @Table(name = "boards")
-public class Board {
-    @Id
+public class Board implements Serializable{
+    private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "board_no")
     private Long boardNo;
@@ -44,16 +51,16 @@ public class Board {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    @Column(nullable = false, name = "regist_user_no")
+    @Column(name = "regist_user_no", nullable = false)
     private Long registUserNo;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false, name = "entry_start_at")
+    @Column(name = "entry_start_at", nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
     private Date entryStartAt;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false, name = "entry_end_at")
+    @Column(name = "entry_end_at", nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
     private Date entryEndAt;
     
@@ -79,9 +86,6 @@ public class Board {
     @Column(name = "del_flg", columnDefinition = "TINYINT", length = 1)
     private boolean delFlg;
 
-    // @ManyToOne
-    // private User user;
-
     @Column(name = "created_at", nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
@@ -91,6 +95,17 @@ public class Board {
     @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updatedAt;
+
+    // @OneToMany
+    // @JoinColumn(name="board_no")
+    // private Collection<EntryProgress> entryProgress;
+
+    /**
+     * RDBレコードのマッピング用クラス
+     */
+    // @ManyToOne
+    // @JoinColumn(name="user_no")
+    // private User user;
 
     @PrePersist
     protected void onSave() {
