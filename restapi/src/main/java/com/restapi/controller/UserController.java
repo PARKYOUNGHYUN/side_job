@@ -24,11 +24,11 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "/api")
+@RequestMapping(path = "/api/user")
 public class UserController {
 
     @Autowired
-	private UserService userService;
+    private UserService userService;
 
     @NonNull
     private final UserRepository userRepository;
@@ -36,10 +36,9 @@ public class UserController {
     /**
      * 全体ユーザ検索
      *
-     * @param id 検索したいユーザID
      * @return ユーザ
      */
-    @GetMapping("/users")
+    @GetMapping
     public List<User> getUsers() {
         return userService.getUsers();
     }
@@ -47,42 +46,42 @@ public class UserController {
     /**
      * ユーザ検索
      *
-     * @param id 検索したいユーザID
+     * @param id ユーザID
      * @return ユーザ
      */
-    @GetMapping("/user/{id}")
-	public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
+    @GetMapping("{id}")
+    public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
         Optional<User> user = userService.getUser(id); 
-		if(user.isPresent())
-			return new ResponseEntity<User>(user.get(), HttpStatus.OK);
-        return new ResponseEntity<User>(HttpStatus.NOT_FOUND);	
+        if(user.isPresent())
+            return new ResponseEntity<User>(user.get(), HttpStatus.OK);
+        return new ResponseEntity<User>(HttpStatus.NOT_FOUND);    
     }
 
     /**
      * ユーザ登録
      *
      * @param userBody リクエストボディ
-     * @return 更新後のユーザ
+     * @return 登録後のユーザ
      */
-    @PutMapping("/user")
-    public ResponseEntity<Void> createUser(@RequestBody @Validated User user) {
-        boolean result = userService.createUser(user);
-        if (!result)
-            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-        return new ResponseEntity<Void>(HttpStatus.CREATED); 
+    @PutMapping
+    public ResponseEntity<User> createUser(@RequestBody @Validated User user) {
+        User createdBoard = userService.createUser(user);
+        if (createdBoard != null)
+            return new ResponseEntity<User>(createdBoard, HttpStatus.CONFLICT);
+        return new ResponseEntity<User>(HttpStatus.CREATED); 
     }
 
     /**
-     * ユーザ修正
+     * ユーザ更新
      *
      * @param userBody リクエストボディ
      * @return 更新後のユーザ
      */
-    @PatchMapping("/user/{id}")
+    @PatchMapping("{id}")
     public ResponseEntity<User> patchUser(@PathVariable("id") Long id, @RequestBody @Valid User user) {
         User updateUser = userService.patchUser(id, user); 
-		if(updateUser != null)
-			return new ResponseEntity<User>(updateUser, HttpStatus.OK);
+        if(updateUser != null)
+            return new ResponseEntity<User>(updateUser, HttpStatus.OK);
         return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
     }
 

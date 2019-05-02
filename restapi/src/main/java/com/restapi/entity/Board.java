@@ -30,54 +30,57 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @AllArgsConstructor
 @Entity
 @Table(name = "boards")
-public class Boards {
+public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "board_no")
-    private Long userNo;
+    private Long boardNo;
 
     @Lob
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String title;
 
     @Lob
-    @Column(nullable=false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "regist_User_no")
+    @Column(nullable = false, name = "regist_User_no")
     private Long registUserNo;
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "entry_start_at")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false, name = "entry_start_at")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
     private Date entryStartAt;
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "entry_end_at")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false, name = "entry_end_at")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
     private Date entryEndAt;
     
-    @Lob
-    @Column(nullable=false)
-    private String password;
+    @Column(name = "post_type", nullable = false, columnDefinition = "TINYINT", length = 1)
+    private int postType;
 
-    @Column(nullable = false, columnDefinition = "TINYINT", length = 1)
-    private int sex;
+    @Column(nullable = false)
+    private int capacity;
 
     @Temporal(TemporalType.DATE)
+    @Column(name = "start_at")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date birth;
+    private Date startAt;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "end_at")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private Date endAt;
     
-    @Lob
     @Column
-    private String region;
+    private Long price;
 
-    @Column(columnDefinition = "TEXT")
-    private String pr;
-
-    @Column(name = "del_flg", nullable = false, columnDefinition = "TINYINT", length = 1)
+    @Column(name = "del_flg", columnDefinition = "TINYINT", length = 1)
     private boolean delFlg;
+
+    // @ManyToOne
+    // private User user;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)

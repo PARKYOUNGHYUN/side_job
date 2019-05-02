@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,15 +36,15 @@ public class User{
     private Long userNo;
 
     @Lob
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String nickname;
 
     @Lob
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String mail;
 
     @Lob
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String password;
 
     @Column(nullable = false, columnDefinition = "TINYINT", length = 1)
@@ -53,6 +52,7 @@ public class User{
 
     @Temporal(TemporalType.DATE)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Column(nullable = false)
     private Date birth;
     
     @Lob
@@ -62,7 +62,7 @@ public class User{
     @Column(columnDefinition = "TEXT")
     private String pr;
 
-    @Column(name = "del_flg", nullable = false, columnDefinition = "TINYINT", length = 1)
+    @Column(name = "del_flg", columnDefinition = "TINYINT", length = 1)
     private boolean delFlg;
 
     @Column(name = "created_at", nullable = false, updatable = false)
@@ -75,17 +75,18 @@ public class User{
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updatedAt;
 
+    // @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    // @JoinColumn(name="user_no")
+    // private List<Board> boards;
+
     @PrePersist
     protected void onSave() {
         createdAt = new Date();
         updatedAt = new Date();
-        System.out.println("createdAt1 = " + createdAt);
-        System.out.println("updatedAt2 = " + updatedAt);
     }
 
     @PreUpdate
     protected void onUpdate() {
         updatedAt = new Date();
-        System.out.println("updatedAt2 = " + updatedAt);
     }
 }
