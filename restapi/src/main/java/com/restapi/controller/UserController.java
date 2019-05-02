@@ -54,7 +54,7 @@ public class UserController {
         Optional<User> user = userService.getUser(id); 
         if(user.isPresent())
             return new ResponseEntity<User>(user.get(), HttpStatus.OK);
-        return new ResponseEntity<User>(HttpStatus.NOT_FOUND);    
+        return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
     }
 
     /**
@@ -84,17 +84,4 @@ public class UserController {
             return new ResponseEntity<User>(updateUser, HttpStatus.OK);
         return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
     }
-
-    /**
-     * ユーザ削除
-     *
-     * @param id 削除したいユーザID
-     */
-    // @DeleteMapping("/users/{id}")
-    // public ResponseEntity<?> deleteById(@PathVariable("id") String id) {
-    //     User deleteUser = userRepository.findById(id).orElseThrow(() -> new NotFoundException(id + " is not found."));
-
-    //     userRepository.delete(deleteUser);
-    //     return ResponseEntity.ok().build();
-    // }
 }

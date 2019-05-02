@@ -44,7 +44,7 @@ public class Board {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    @Column(nullable = false, name = "regist_User_no")
+    @Column(nullable = false, name = "regist_user_no")
     private Long registUserNo;
 
     @Temporal(TemporalType.TIMESTAMP)

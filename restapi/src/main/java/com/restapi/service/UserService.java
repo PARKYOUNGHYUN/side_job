@@ -62,20 +62,6 @@ public class UserService {
             
             return userRepository.save(fetchedUser.get());
         }
-        else{
-            return null;
-        }
-    }    
-
-    
-    // public boolean deleteUser(Long id){
-    //     final Optional<User> fetchedUser = userRepository.findById(id);
-    //     if(fetchedUser.isPresent()){
-    //         userRepository.deleteById(id);
-    //         return true;
-    //     }
-    //     else{
-    //         return false;
-    //     }
-    // }
+        else return null;
+    }
 }

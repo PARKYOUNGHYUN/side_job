@@ -58,20 +58,6 @@ public class BoardService {
             
             return boardRepository.save(fetchedBoard.get());
         }
-        else{
-            return null;
-        }
-    }    
-
-    
-    // public boolean deleteBoard(Long id){
-    //     final Optional<Board> fetchedBoard = boardRepository.findById(id);
-    //     if(fetchedBoard.isPresent()){
-    //         boardRepository.deleteById(id);
-    //         return true;
-    //     }
-    //     else{
-    //         return false;
-    //     }
-    // }
+        else return null;
+    }
 }
