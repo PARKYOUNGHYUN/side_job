@@ -31,17 +31,6 @@ public class BoardService {
         return boardRepository.findById(id);
     }
 
-    // public Board updateBoard(Long id, Board board){
-    //     final Optional<Board> fetchedBoard = boardRepository.findById(id);
-    //     if(fetchedBoard.isPresent()){
-    //         board.setId(id);
-    //         return boardRepository.save(board);
-    //     }
-    //     else{
-    //         return null;
-    //     }
-    // }
-    
     public Board patchBoard(Long id, Board board){
         final Optional<Board> fetchedBoard = boardRepository.findById(id);
         if(fetchedBoard.isPresent()){
@@ -49,7 +38,8 @@ public class BoardService {
             if(board.getContent() != null) fetchedBoard.get().setContent(board.getContent());
             if(board.getEntryStartAt() != null) fetchedBoard.get().setEntryStartAt(board.getEntryStartAt());
             if(board.getEntryEndAt() != null) fetchedBoard.get().setEntryEndAt(board.getEntryEndAt());
-            if(board.getPostType() > 0) fetchedBoard.get().setPostType(board.getPostType());
+            if(board.getPostType() > 0 && board.getPostType() != fetchedBoard.get().getPostType())
+                fetchedBoard.get().setPostType(board.getPostType());
             if(board.getCapacity() >= 0) fetchedBoard.get().setCapacity(board.getCapacity());
             if(board.getStartAt() != null) fetchedBoard.get().setStartAt(board.getStartAt());
             if(board.getEndAt() != null) fetchedBoard.get().setEndAt(board.getEndAt());
