@@ -5,10 +5,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.restapi.entity.ProgressTime;
-import com.restapi.repository.ProgressTimeRepository;
 import com.restapi.service.ProgressTimeService;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +26,6 @@ public class ProgressTimesController {
 
     @Autowired
     private ProgressTimeService timeService;
-
-    @NonNull
-    private final ProgressTimeRepository timeRepository;
 
     /**
      * 進行可能時間検索

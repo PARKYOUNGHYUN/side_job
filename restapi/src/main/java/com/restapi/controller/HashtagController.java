@@ -3,10 +3,8 @@ package com.restapi.controller;
 import java.util.Optional;
 
 import com.restapi.entity.Hashtag;
-import com.restapi.repository.HashtagRepository;
 import com.restapi.service.HashtagService;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +24,6 @@ public class HashtagController {
 
     @Autowired
     private HashtagService hashtagService;
-
-    @NonNull
-    private final HashtagRepository hashtagRepository;
 
     /**
      * ハッシュタグ検索

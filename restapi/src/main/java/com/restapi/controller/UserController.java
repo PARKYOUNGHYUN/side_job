@@ -6,10 +6,8 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import com.restapi.entity.User;
-import com.restapi.repository.UserRepository;
 import com.restapi.service.UserService;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +27,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-    @NonNull
-    private final UserRepository userRepository;
 
     /**
      * 全体ユーザ検索

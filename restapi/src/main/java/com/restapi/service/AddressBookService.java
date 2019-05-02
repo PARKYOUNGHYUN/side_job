@@ -41,8 +41,8 @@ public class AddressBookService {
     }
 
     public boolean deleteAddressBook(Long id){
-        final Optional<AddressBook> fetchedProgressTime = addressBookRepository.findById(id);
-        if(fetchedProgressTime.isPresent()){
+        final Optional<AddressBook> progressTime = addressBookRepository.findById(id);
+        if(progressTime.isPresent()){
             addressBookRepository.deleteById(id);
             return true;
         }

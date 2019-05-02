@@ -4,10 +4,8 @@ import java.util.Optional;
 
 import com.restapi.entity.PaymentDetail;
 import com.restapi.entity.PaymentDetailId;
-import com.restapi.repository.PaymentDetailRepository;
 import com.restapi.service.PaymentDetailService;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +24,7 @@ import org.springframework.web.bind.annotation.*;
 public class PaymentDetailController {
 
     @Autowired
-    private PaymentDetailService progresService;
-
-    @NonNull
-    private final PaymentDetailRepository progresRepository;
+    private PaymentDetailService paymentDetailService;
 
     /**
      * 決済内訳検索
@@ -39,7 +34,7 @@ public class PaymentDetailController {
      */
     @GetMapping
     public ResponseEntity<PaymentDetail> getPaymentDetailById(@RequestBody PaymentDetailId epId) {
-        Optional<PaymentDetail> paymentDetail = progresService.getPaymentDetail(epId);
+        Optional<PaymentDetail> paymentDetail = paymentDetailService.getPaymentDetail(epId);
         if(paymentDetail.isPresent())
             return new ResponseEntity<PaymentDetail>(paymentDetail.get(), HttpStatus.OK);
         return new ResponseEntity<PaymentDetail>(HttpStatus.NOT_FOUND);
@@ -48,12 +43,12 @@ public class PaymentDetailController {
     /**
      * 決済内訳登録
      *
-     * @param progresBody リクエストボディ
+     * @param progressBody リクエストボディ
      * @return 更新後の決済内訳
      */
     @PutMapping
     public ResponseEntity<PaymentDetail> createPaymentDetail(@RequestBody @Validated PaymentDetail progress) {
-        PaymentDetail createdProgress = progresService.createPaymentDetail(progress);
+        PaymentDetail createdProgress = paymentDetailService.createPaymentDetail(progress);
         if (createdProgress != null)
             return new ResponseEntity<PaymentDetail>(createdProgress, HttpStatus.CONFLICT);
         return new ResponseEntity<PaymentDetail>(HttpStatus.CREATED); 
@@ -62,12 +57,12 @@ public class PaymentDetailController {
     /**
      * 決済内訳修正
      *
-     * @param progresBody リクエストボディ
+     * @param progressBody リクエストボディ
      * @return 更新後の決済内訳
      */
     // @PatchMapping
     // public ResponseEntity<PaymentDetail> patchPaymentDetail(@RequestBody @Valid PaymentDetail progress) {
-    //     PaymentDetail fetchedProgress = progresService.patchPaymentDetail(progress); 
+    //     PaymentDetail fetchedProgress = paymentDetailService.patchPaymentDetail(progress); 
     //     if(fetchedProgress != null)
     //         return new ResponseEntity<PaymentDetail>(fetchedProgress, HttpStatus.OK);
     //     return new ResponseEntity<PaymentDetail>(HttpStatus.NOT_FOUND);

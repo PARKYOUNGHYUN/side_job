@@ -39,8 +39,8 @@ public class ProgressTimeService {
     }    
 
     public boolean deleteProgressTime(Long id){
-        final Optional<ProgressTime> fetchedProgressTime = timeRepository.findById(id);
-        if(fetchedProgressTime.isPresent()){
+        final Optional<ProgressTime> progressTime = timeRepository.findById(id);
+        if(progressTime.isPresent()){
             timeRepository.deleteById(id);
             return true;
         }

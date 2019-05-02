@@ -6,10 +6,8 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import com.restapi.entity.Board;
-import com.restapi.repository.BoardRepository;
 import com.restapi.service.BoardService;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +27,6 @@ public class BoardController {
 
     @Autowired
     private BoardService boardService;
-
-    @NonNull
-    private final BoardRepository boardRepository;
 
     /**
      * 全体掲示板検索

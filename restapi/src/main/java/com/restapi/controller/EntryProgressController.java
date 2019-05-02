@@ -6,10 +6,8 @@ import javax.validation.Valid;
 
 import com.restapi.entity.EntryProgress;
 import com.restapi.entity.EntryProgressId;
-import com.restapi.repository.EntryProgressRepository;
 import com.restapi.service.EntryProgressService;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +26,7 @@ import org.springframework.web.bind.annotation.*;
 public class EntryProgressController {
 
     @Autowired
-    private EntryProgressService progresService;
-
-    @NonNull
-    private final EntryProgressRepository progresRepository;
+    private EntryProgressService progressService;
 
     /**
      * 進行状態検索
@@ -41,7 +36,7 @@ public class EntryProgressController {
      */
     @GetMapping
     public ResponseEntity<EntryProgress> getEntryProgressById(@RequestBody EntryProgressId epId) {
-        Optional<EntryProgress> entryProgress = progresService.getEntryProgress(epId);
+        Optional<EntryProgress> entryProgress = progressService.getEntryProgress(epId);
         if(entryProgress.isPresent())
             return new ResponseEntity<EntryProgress>(entryProgress.get(), HttpStatus.OK);
         return new ResponseEntity<EntryProgress>(HttpStatus.NOT_FOUND);
@@ -50,12 +45,12 @@ public class EntryProgressController {
     /**
      * 進行状態登録
      *
-     * @param progresBody リクエストボディ
+     * @param progressBody リクエストボディ
      * @return 更新後の進行状態
      */
     @PutMapping
     public ResponseEntity<EntryProgress> createEntryProgress(@RequestBody @Validated EntryProgress progress) {
-        EntryProgress createdProgress = progresService.createProgress(progress);
+        EntryProgress createdProgress = progressService.createProgress(progress);
         if (createdProgress != null)
             return new ResponseEntity<EntryProgress>(createdProgress, HttpStatus.CONFLICT);
         return new ResponseEntity<EntryProgress>(HttpStatus.CREATED); 
@@ -64,12 +59,12 @@ public class EntryProgressController {
     /**
      * 進行状態修正
      *
-     * @param progresBody リクエストボディ
+     * @param progressBody リクエストボディ
      * @return 更新後の進行状態
      */
     @PatchMapping
     public ResponseEntity<EntryProgress> patchEntryProgress(@RequestBody @Valid EntryProgress progress) {
-        EntryProgress fetchedProgress = progresService.patchEntryProgress(progress); 
+        EntryProgress fetchedProgress = progressService.patchEntryProgress(progress); 
         if(fetchedProgress != null)
             return new ResponseEntity<EntryProgress>(fetchedProgress, HttpStatus.OK);
         return new ResponseEntity<EntryProgress>(HttpStatus.NOT_FOUND);

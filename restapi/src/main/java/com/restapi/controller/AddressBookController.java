@@ -5,10 +5,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.restapi.entity.AddressBook;
-import com.restapi.repository.AddressBookRepository;
 import com.restapi.service.AddressBookService;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +26,6 @@ public class AddressBookController {
 
     @Autowired
     private AddressBookService addressBookService;
-
-    @NonNull
-    private final AddressBookRepository addressBookRepository;
 
     /**
      * 住所録検索
@@ -71,7 +66,7 @@ public class AddressBookController {
         return new ResponseEntity<AddressBook>(HttpStatus.NOT_FOUND);
     }
 
-        /**
+    /**
      * 住所録削除
      *
      * @param id 住所録ID
