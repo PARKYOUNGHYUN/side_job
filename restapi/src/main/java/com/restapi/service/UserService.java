@@ -7,6 +7,8 @@ import com.restapi.entity.User;
 import com.restapi.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,8 +17,17 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> getUsers() {
-        return userRepository.findAll();
+    @Autowired(required=false)
+    private PasswordEncoder passwordEncoder;
+
+    public boolean checkUser(User user) {
+        List<User> checkedUser = userRepository.findByMail(user.getMail());
+        if(checkedUser.size() <= 0)
+            return false;
+        String password = checkedUser.get(0).getPassword();
+        if (passwordEncoder.matches(user.getPassword(), password))
+            return true;
+        return false;
     }
 
     public Optional<User> getUser(Long id){
@@ -32,6 +43,9 @@ public class UserService {
 
     public User createUser(User user) {
         try {
+            passwordEncoder = new BCryptPasswordEncoder();
+            String encryPassword = passwordEncoder.encode(user.getPassword());
+            user.setPassword(encryPassword);
             return userRepository.save(user);
         } catch (Exception e) {
             return null;

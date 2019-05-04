@@ -1,6 +1,5 @@
 package com.restapi.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -34,8 +33,10 @@ public class UserController {
      * @return ユーザ
      */
     @GetMapping
-    public List<User> getUsers() {
-        return userService.getUsers();
+    public ResponseEntity<User> checkUser(@RequestBody @Validated User user) {
+        if(! userService.checkUser(user))
+            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<User>(HttpStatus.FOUND);
     }
 
     /**
