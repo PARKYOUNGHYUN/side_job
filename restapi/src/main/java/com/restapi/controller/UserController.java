@@ -1,7 +1,5 @@
 package com.restapi.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import com.restapi.entity.User;
@@ -37,8 +35,8 @@ public class UserController {
     public ResponseEntity<User> getUser(@RequestParam(required = false) String mail, @RequestParam(required = false) String password) {
         User user = userService.getUser(mail, password);
         if(user != null)
-            return new ResponseEntity<User>(user, HttpStatus.NOT_FOUND);
-        return new ResponseEntity<User>(HttpStatus.FOUND);
+            return new ResponseEntity<User>(user, HttpStatus.OK);
+        return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
     }
     
     /**
