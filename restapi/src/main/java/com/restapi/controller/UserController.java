@@ -1,6 +1,6 @@
 package com.restapi.controller;
 
-import java.util.Optional;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -28,31 +28,19 @@ public class UserController {
     private UserService userService;
 
     /**
-     * 全体ユーザ検索
-     *
-     * @return ユーザ
-     */
-    @GetMapping
-    public ResponseEntity<User> checkUser(@RequestBody @Validated User user) {
-        if(! userService.checkUser(user))
-            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
-        return new ResponseEntity<User>(HttpStatus.FOUND);
-    }
-
-    /**
      * ユーザ検索
      *
      * @param id ユーザID
      * @return ユーザ
      */
-    @GetMapping("{id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
-        Optional<User> user = userService.getUser(id); 
-        if(user.isPresent())
-            return new ResponseEntity<User>(user.get(), HttpStatus.OK);
-        return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+    @GetMapping
+    public ResponseEntity<User> getUser(@RequestParam(required = false) String mail, @RequestParam(required = false) String password) {
+        User user = userService.getUser(mail, password);
+        if(user != null)
+            return new ResponseEntity<User>(user, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<User>(HttpStatus.FOUND);
     }
-
+    
     /**
      * ユーザ登録
      *

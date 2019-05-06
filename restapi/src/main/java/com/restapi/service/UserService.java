@@ -20,26 +20,18 @@ public class UserService {
     @Autowired(required=false)
     private PasswordEncoder passwordEncoder;
 
-    public boolean checkUser(User user) {
-        List<User> checkedUser = userRepository.findByMail(user.getMail());
+    public User getUser(String reqMail, String reqPassword) {
+        List<User> checkedUser = userRepository.findByMail(reqMail);
         if(checkedUser.size() <= 0)
-            return false;
-        String password = checkedUser.get(0).getPassword();
-        if (passwordEncoder.matches(user.getPassword(), password))
-            return true;
-        return false;
+            return null;
+        if(reqPassword != null) {
+            String password = checkedUser.get(0).getPassword();
+            passwordEncoder = new BCryptPasswordEncoder();
+            if (! passwordEncoder.matches(reqPassword, password))
+                return null;
+        }
+        return checkedUser.get(0);
     }
-
-    public Optional<User> getUser(Long id){
-        return userRepository.findById(id);
-    }
-
-    // public List<User> getUserByMail(String mail) {
-    //     return userRepository.findByMailEquals(mail);
-    // }
-    // public List<User> getUserByNickname(String nickname){
-    //     return userRepository.findByNicknameEquals(nickname);
-    // }
 
     public User createUser(User user) {
         try {
