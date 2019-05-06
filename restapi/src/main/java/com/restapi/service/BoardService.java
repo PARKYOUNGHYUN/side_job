@@ -23,8 +23,12 @@ public class BoardService {
         }
     }
 
-    public List<Board> getBoards() {
-        return boardRepository.findAll();
+    public List<Board> getBoards(int postType, int limit) {
+        List<Board> boardList = boardRepository.findByPostTypeIsAndDelFlgFalseOrderByUpdatedAt(postType);
+        if (boardList.size() > limit) {
+            return boardList.subList(0, limit);
+        }
+        return boardList;
     }
 
     public Optional<Board> getBoard(Long id){

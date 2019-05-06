@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "/api/board")
+@RequestMapping(path = "/api")
 public class BoardController {
 
     @Autowired
@@ -33,9 +33,9 @@ public class BoardController {
      *
      * @return 掲示板
      */
-    @GetMapping
-    public List<Board> getBoards() {
-        return boardService.getBoards();
+    @GetMapping("/boards")
+    public List<Board> getBoards(@RequestParam(required = false) int postType, @RequestParam(required = false) int limit) {
+        return boardService.getBoards(postType, limit);
     }
 
     /**
@@ -44,7 +44,7 @@ public class BoardController {
      * @param id 掲示板ID
      * @return 掲示板
      */
-    @GetMapping("{id}")
+    @GetMapping("/board/{id}")
     public ResponseEntity<Board> getBoardById(@PathVariable("id") Long id) {
         Optional<Board> board = boardService.getBoard(id); 
         if(board.isPresent())
@@ -58,7 +58,7 @@ public class BoardController {
      * @param boardBody リクエストボディ
      * @return 更新後の掲示板
      */
-    @PutMapping
+    @PutMapping("/board")
     public ResponseEntity<Board> createBoard(@RequestBody @Validated Board board) {
         Board createdBoard = boardService.createBoard(board);
         if (createdBoard != null)
@@ -72,7 +72,7 @@ public class BoardController {
      * @param boardBody リクエストボディ
      * @return 更新後の掲示板
      */
-    @PatchMapping("{id}")
+    @PatchMapping("/board/{id}")
     public ResponseEntity<Board> patchBoard(@PathVariable("id") Long id, @RequestBody @Valid Board board) {
         Board updatedBoard = boardService.patchBoard(id, board); 
         if(updatedBoard != null)

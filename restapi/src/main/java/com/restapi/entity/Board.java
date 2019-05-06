@@ -13,7 +13,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -47,8 +49,12 @@ public class Board implements Serializable{
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    @Column(name = "regist_user_no", nullable = false)
-    private Long registUserNo;
+    /**
+     * RDBレコードのマッピング用クラス
+     */
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name="regist_user_no")
+    private User user;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "entry_start_at", nullable = false)
@@ -95,13 +101,6 @@ public class Board implements Serializable{
     // @OneToMany
     // @JoinColumn(name="board_no")
     // private Collection<EntryProgress> entryProgress;
-
-    /**
-     * RDBレコードのマッピング用クラス
-     */
-    // @ManyToOne
-    // @JoinColumn(name="user_no")
-    // private User user;
 
     @PrePersist
     protected void onSave() {
