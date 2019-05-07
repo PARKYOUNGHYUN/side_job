@@ -36,7 +36,7 @@ public class UserController {
         User user = userService.getUser(mail, password);
         if(user != null)
             return new ResponseEntity<User>(user, HttpStatus.OK);
-        return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<User>(HttpStatus.OK);
     }
     
     /**
@@ -49,8 +49,8 @@ public class UserController {
     public ResponseEntity<User> createUser(@RequestBody @Validated User user) {
         User createdBoard = userService.createUser(user);
         if (createdBoard != null)
-            return new ResponseEntity<User>(createdBoard, HttpStatus.CONFLICT);
-        return new ResponseEntity<User>(HttpStatus.CREATED); 
+            return new ResponseEntity<User>(createdBoard, HttpStatus.CREATED);
+        return new ResponseEntity<User>(HttpStatus.UNAUTHORIZED); 
     }
 
     /**
