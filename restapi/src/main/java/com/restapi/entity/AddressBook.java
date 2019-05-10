@@ -27,7 +27,7 @@ import javax.persistence.Table;
 public class AddressBook implements Serializable{
     private static final long serialVersionUID = 1L;
 
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "address_no")
     private Long addressNo;

@@ -38,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Board implements Serializable{
     private static final long serialVersionUID = 1L;
 
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "board_no")
     private Long boardNo;

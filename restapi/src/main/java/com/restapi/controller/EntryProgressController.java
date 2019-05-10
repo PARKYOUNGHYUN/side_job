@@ -2,8 +2,6 @@ package com.restapi.controller;
 
 import java.util.Optional;
 
-import javax.validation.Valid;
-
 import com.restapi.entity.EntryProgress;
 import com.restapi.entity.EntryProgressId;
 import com.restapi.service.EntryProgressService;
@@ -52,21 +50,7 @@ public class EntryProgressController {
     public ResponseEntity<EntryProgress> createEntryProgress(@RequestBody @Validated EntryProgress progress) {
         EntryProgress createdProgress = progressService.createProgress(progress);
         if (createdProgress != null)
-            return new ResponseEntity<EntryProgress>(createdProgress, HttpStatus.CONFLICT);
-        return new ResponseEntity<EntryProgress>(HttpStatus.CREATED); 
-    }
-
-    /**
-     * 進行状態修正
-     *
-     * @param progressBody リクエストボディ
-     * @return 更新後の進行状態
-     */
-    @PatchMapping
-    public ResponseEntity<EntryProgress> patchEntryProgress(@RequestBody @Valid EntryProgress progress) {
-        EntryProgress fetchedProgress = progressService.patchEntryProgress(progress); 
-        if(fetchedProgress != null)
-            return new ResponseEntity<EntryProgress>(fetchedProgress, HttpStatus.OK);
-        return new ResponseEntity<EntryProgress>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<EntryProgress>(createdProgress, HttpStatus.CREATED);
+        return new ResponseEntity<EntryProgress>(HttpStatus.CONFLICT); 
     }
 }
