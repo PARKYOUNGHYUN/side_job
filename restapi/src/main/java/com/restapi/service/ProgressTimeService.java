@@ -23,11 +23,11 @@ public class ProgressTimeService {
         }
     }
 
-    public List<ProgressTime> getProgressTimeByUserNo(Long id) {
+    public List<ProgressTime> getProgressTimeByUserNo(long id) {
         return timeRepository.findByUserNoEquals(id);
     }
 
-    public ProgressTime patchProgressTime(Long id, ProgressTime time){
+    public ProgressTime patchProgressTime(long id, ProgressTime time){
         final Optional<ProgressTime> fetchedProgressTime = timeRepository.findById(id);
         if(fetchedProgressTime.isPresent()){
             if(time.getStartAt() != null) fetchedProgressTime.get().setStartAt(time.getStartAt());
@@ -38,7 +38,7 @@ public class ProgressTimeService {
         else return null;
     }    
 
-    public boolean deleteProgressTime(Long id){
+    public boolean deleteProgressTime(long id){
         final Optional<ProgressTime> progressTime = timeRepository.findById(id);
         if(progressTime.isPresent()){
             timeRepository.deleteById(id);

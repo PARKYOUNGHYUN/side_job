@@ -60,7 +60,7 @@ public class UserController {
      * @return 更新後のユーザ
      */
     @PatchMapping("{id}")
-    public ResponseEntity<User> patchUser(@PathVariable("id") Long id, @RequestBody @Valid User user) {
+    public ResponseEntity<User> patchUser(@PathVariable("id") long id, @RequestBody @Valid User user) {
         User updateUser = userService.patchUser(id, user); 
         if(updateUser != null)
             return new ResponseEntity<User>(updateUser, HttpStatus.OK);

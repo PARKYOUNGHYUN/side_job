@@ -32,7 +32,7 @@ public class HashtagController {
      * @return ハッシュタグ
      */
     @GetMapping("{id}")
-    public ResponseEntity<Hashtag> getHashtagById(@PathVariable("id") Long id) {
+    public ResponseEntity<Hashtag> getHashtagById(@PathVariable("id") long id) {
         Optional<Hashtag> hashtag = hashtagService.getHashtag(id); 
         if(hashtag.isPresent())
             return new ResponseEntity<Hashtag>(hashtag.get(), HttpStatus.OK);

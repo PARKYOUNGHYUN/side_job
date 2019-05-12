@@ -25,17 +25,17 @@ public class BoardService {
 
     public List<Board> getBoards(int postType, int limit) {
         List<Board> boardList = boardRepository.findByPostTypeIsAndDelFlgFalseOrderByUpdatedAt(postType);
-        if (boardList.size() > limit) {
+        if (limit > 0 && boardList.size() > limit) {
             return boardList.subList(0, limit);
         }
         return boardList;
     }
 
-    public Optional<Board> getBoard(Long id){
+    public Optional<Board> getBoard(long id){
         return boardRepository.findById(id);
     }
 
-    public Board patchBoard(Long id, Board board){
+    public Board patchBoard(long id, Board board){
         final Optional<Board> fetchedBoard = boardRepository.findById(id);
         if(fetchedBoard.isPresent()){
             if(board.getTitle() != null) fetchedBoard.get().setTitle(board.getTitle());
@@ -46,7 +46,7 @@ public class BoardService {
             if(board.getCapacity() >= 0) fetchedBoard.get().setCapacity(board.getCapacity());
             if(board.getStartAt() != null) fetchedBoard.get().setStartAt(board.getStartAt());
             if(board.getEndAt() != null) fetchedBoard.get().setEndAt(board.getEndAt());
-            if(board.getPrice() != null) fetchedBoard.get().setPrice(board.getPrice());
+            if(board.getPrice() > 0) fetchedBoard.get().setPrice(board.getPrice());
             if(board.isDelFlg()) fetchedBoard.get().setDelFlg(board.isDelFlg());
             
             return boardRepository.save(fetchedBoard.get());

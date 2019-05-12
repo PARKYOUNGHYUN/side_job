@@ -45,7 +45,7 @@ public class BoardController {
      * @return 掲示板
      */
     @GetMapping("/board/{id}")
-    public ResponseEntity<Board> getBoardById(@PathVariable("id") Long id) {
+    public ResponseEntity<Board> getBoardById(@PathVariable("id") long id) {
         Optional<Board> board = boardService.getBoard(id); 
         if(board.isPresent())
             return new ResponseEntity<Board>(board.get(), HttpStatus.OK);
@@ -73,7 +73,7 @@ public class BoardController {
      * @return 更新後の掲示板
      */
     @PatchMapping("/board/{id}")
-    public ResponseEntity<Board> patchBoard(@PathVariable("id") Long id, @RequestBody @Valid Board board) {
+    public ResponseEntity<Board> patchBoard(@PathVariable("id") long id, @RequestBody @Valid Board board) {
         Board updatedBoard = boardService.patchBoard(id, board); 
         if(updatedBoard != null)
             return new ResponseEntity<Board>(updatedBoard, HttpStatus.OK);

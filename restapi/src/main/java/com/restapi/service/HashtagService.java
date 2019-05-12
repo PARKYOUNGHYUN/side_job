@@ -14,7 +14,7 @@ public class HashtagService {
     @Autowired
     private HashtagRepository hashtagRepository;
 
-    public Optional<Hashtag> getHashtag(Long id){
+    public Optional<Hashtag> getHashtag(long id){
         return hashtagRepository.findById(id);
     }
 

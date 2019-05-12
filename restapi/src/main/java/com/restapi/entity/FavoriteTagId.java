@@ -16,8 +16,8 @@ public class FavoriteTagId implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Column(name = "user_no")
-  private Long userNo;
+  private long userNo;
 
   @Column(name = "hashtag_no")
-  private Long hashtagNo;
+  private long hashtagNo;
 }

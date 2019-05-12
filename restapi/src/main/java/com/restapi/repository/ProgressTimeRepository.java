@@ -10,5 +10,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * JPAを利用するためのインタフェース
  */
 public interface ProgressTimeRepository extends JpaRepository<ProgressTime, Long> {
-    List<ProgressTime> findByUserNoEquals(Long userNo);
+    List<ProgressTime> findByUserNoEquals(long userNo);
 }

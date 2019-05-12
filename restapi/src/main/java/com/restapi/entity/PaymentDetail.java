@@ -28,5 +28,5 @@ public class PaymentDetail implements Serializable {
     private PaymentDetailId pdId;
 
     @Column(name = "billing_amount", nullable = false)
-    private Long billingAmount;
+    private long billingAmount;
 }

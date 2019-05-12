@@ -29,7 +29,7 @@ public class Hashtag implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "hashtag_no")
-    private Long hashtagNo;
+    private long hashtagNo;
 
     @Column(nullable = false)
     private String hashtag;

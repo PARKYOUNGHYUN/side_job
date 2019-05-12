@@ -23,7 +23,10 @@ public class EntryProgressService {
         }
     }
 
-    public Optional<EntryProgress> getEntryProgress(EntryProgressId epId) {
+    public Optional<EntryProgress> getEntryProgress(long boardNo, long entryUserNo) {
+        EntryProgressId epId = new EntryProgressId();
+        epId.setBoardNo(boardNo);
+        epId.setEntryUserNo(entryUserNo);
         return entryProgressRepository.findById(epId);
     }
 

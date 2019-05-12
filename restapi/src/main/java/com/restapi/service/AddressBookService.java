@@ -23,11 +23,11 @@ public class AddressBookService {
         }
     }
 
-    public List<AddressBook> getAddressBookByBoardNo(Long BoardNo) {
+    public List<AddressBook> getAddressBookByBoardNo(long BoardNo) {
         return addressBookRepository.findByBoardNoEquals(BoardNo);
     }
 
-    public AddressBook patchAddressBook(Long id, AddressBook addressBook){
+    public AddressBook patchAddressBook(long id, AddressBook addressBook){
         final Optional<AddressBook> fetchedAddressBook = addressBookRepository.findById(id);
         if(fetchedAddressBook.isPresent()){
             if(addressBook.getZipCode() > 0) fetchedAddressBook.get().setZipCode(addressBook.getZipCode());
@@ -40,7 +40,7 @@ public class AddressBookService {
         else return null;
     }
 
-    public boolean deleteAddressBook(Long id){
+    public boolean deleteAddressBook(long id){
         final Optional<AddressBook> progressTime = addressBookRepository.findById(id);
         if(progressTime.isPresent()){
             addressBookRepository.deleteById(id);

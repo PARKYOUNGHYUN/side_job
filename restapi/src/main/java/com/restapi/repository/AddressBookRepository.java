@@ -10,5 +10,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * JPAを利用するためのインタフェース
  */
 public interface AddressBookRepository extends JpaRepository<AddressBook, Long> {
-    List<AddressBook> findByBoardNoEquals(Long boardNo);
+    List<AddressBook> findByBoardNoEquals(long boardNo);
 }

@@ -16,7 +16,7 @@ public class PaymentDetailId implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Column(name = "board_no")
-  private Long boardNo;
+  private long boardNo;
 
-  private Long payer;
+  private long payer;
 }

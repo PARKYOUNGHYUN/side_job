@@ -44,7 +44,7 @@ public class UserService {
         }
     }
     
-    // public User updateUser(Long id, User user){
+    // public User updateUser(long id, User user){
     //     final Optional<User> fetchedUser = userRepository.findById(id);
     //     if(fetchedUser.isPresent()){
     //         user.setId(id);
@@ -55,7 +55,7 @@ public class UserService {
     //     }
     // }
     
-    public User patchUser(Long id, User user){
+    public User patchUser(long id, User user){
         final Optional<User> fetchedUser = userRepository.findById(id);
         if(fetchedUser.isPresent()){
             if(user.getNickname() != null) fetchedUser.get().setNickname(user.getNickname());

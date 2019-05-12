@@ -41,7 +41,7 @@ public class Board implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "board_no")
-    private Long boardNo;
+    private long boardNo;
 
     @Lob
     @Column(nullable = false)
@@ -85,7 +85,7 @@ public class Board implements Serializable{
     private Date endAt;
     
     @Column
-    private Long price;
+    private long price;
 
     @Column(name = "del_flg", columnDefinition = "TINYINT", length = 1)
     private boolean delFlg;
@@ -103,9 +103,10 @@ public class Board implements Serializable{
     @OneToMany
     @JoinColumn(name="board_no")
     private List<AddressBook> addressBook;
-    // @OneToMany
-    // @JoinColumn(name="board_no")
-    // private Collection<EntryProgress> entryProgress;
+
+    @OneToMany
+    @JoinColumn(name="board_no")
+    private List<EntryProgress> entryProgress;
 
     @PrePersist
     protected void onSave() {

@@ -11,5 +11,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * JPAを利用するためのインタフェース
  */
 public interface FavoriteTagRepository extends JpaRepository<FavoriteTag, FavoriteTagId> {
-    List<FavoriteTag> findByFtIdUserNo(Long userNo);
+    List<FavoriteTag> findByFtIdUserNo(long userNo);
 }

@@ -34,7 +34,7 @@ public class ProgressTimesController {
      * @return 進行可能時間
      */
     @GetMapping("{userNo}")
-    public List<ProgressTime> getTimeByUserNo(@PathVariable("userNo") Long userNo) {
+    public List<ProgressTime> getTimeByUserNo(@PathVariable("userNo") long userNo) {
         return timeService.getProgressTimeByUserNo(userNo);
     }
 
@@ -59,7 +59,7 @@ public class ProgressTimesController {
      * @return 更新後の進行可能時間
      */
     @PatchMapping("{id}")
-    public ResponseEntity<ProgressTime> patchTime(@PathVariable("id") Long id, @RequestBody @Valid ProgressTime time) {
+    public ResponseEntity<ProgressTime> patchTime(@PathVariable("id") long id, @RequestBody @Valid ProgressTime time) {
         ProgressTime updatedTime = timeService.patchProgressTime(id, time); 
         if(updatedTime != null)
             return new ResponseEntity<ProgressTime>(updatedTime, HttpStatus.OK);
@@ -72,7 +72,7 @@ public class ProgressTimesController {
      * @param id 進行可能時間ID
      */
     @DeleteMapping("{id}")
-    public ResponseEntity<?> deleteById(@PathVariable("id") Long id) {
+    public ResponseEntity<?> deleteById(@PathVariable("id") long id) {
         if(timeService.deleteProgressTime(id)) return new ResponseEntity<Void>(HttpStatus.OK);
         else return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
     }

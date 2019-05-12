@@ -30,10 +30,10 @@ public class AddressBook implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "address_no")
-    private Long addressNo;
+    private long addressNo;
 
     @Column(name = "board_no", nullable = false)
-    private Long boardNo;
+    private long boardNo;
 
     @Column(name = "zip_code")
     private int zipCode;

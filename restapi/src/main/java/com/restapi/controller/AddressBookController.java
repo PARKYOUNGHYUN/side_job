@@ -34,7 +34,7 @@ public class AddressBookController {
      * @return 住所録
      */
     @GetMapping("{boardNo}")
-    public List<AddressBook> getAddressBook(@PathVariable("boardNo") Long boardNo) {
+    public List<AddressBook> getAddressBook(@PathVariable("boardNo") long boardNo) {
         return addressBookService.getAddressBookByBoardNo(boardNo);
     }
 
@@ -59,7 +59,7 @@ public class AddressBookController {
      * @return 更新後の住所録
      */
     @PatchMapping("{id}")
-    public ResponseEntity<AddressBook> patchAddressBook(@PathVariable("id") Long id, @RequestBody @Valid AddressBook addressBook) {
+    public ResponseEntity<AddressBook> patchAddressBook(@PathVariable("id") long id, @RequestBody @Valid AddressBook addressBook) {
         AddressBook updatedAddressBook = addressBookService.patchAddressBook(id, addressBook); 
         if(updatedAddressBook != null)
             return new ResponseEntity<AddressBook>(updatedAddressBook, HttpStatus.OK);
@@ -72,7 +72,7 @@ public class AddressBookController {
      * @param id 住所録ID
      */
     @DeleteMapping("{id}")
-    public ResponseEntity<?> deleteById(@PathVariable("id") Long id) {
+    public ResponseEntity<?> deleteById(@PathVariable("id") long id) {
         if(addressBookService.deleteAddressBook(id)) return new ResponseEntity<Void>(HttpStatus.OK);
         else return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
     }

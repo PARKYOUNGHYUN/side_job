@@ -16,8 +16,8 @@ public class EntryProgressId implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Column(name = "board_no")
-  private Long boardNo;
+  private long boardNo;
 
   @Column(name = "entry_user_no")
-  private Long entryUserNo;
+  private long entryUserNo;
 }

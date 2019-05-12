@@ -34,10 +34,10 @@ public class ProgressTime implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "time_no")
-    private Long timeNo;
+    private long timeNo;
 
     @Column(name = "user_no", nullable = false)
-    private Long userNo;
+    private long userNo;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "start_at", nullable = false)

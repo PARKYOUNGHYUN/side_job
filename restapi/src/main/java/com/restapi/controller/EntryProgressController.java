@@ -1,9 +1,9 @@
 package com.restapi.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.restapi.entity.EntryProgress;
-import com.restapi.entity.EntryProgressId;
 import com.restapi.service.EntryProgressService;
 
 import lombok.RequiredArgsConstructor;
@@ -33,11 +33,12 @@ public class EntryProgressController {
      * @return 進行状態
      */
     @GetMapping
-    public ResponseEntity<EntryProgress> getEntryProgressById(@RequestBody EntryProgressId epId) {
-        Optional<EntryProgress> entryProgress = progressService.getEntryProgress(epId);
-        if(entryProgress.isPresent())
+    public ResponseEntity<EntryProgress> getEntryProgressById(@RequestParam long boardNo,
+            @RequestParam long entryUserNo) {
+        Optional<EntryProgress> entryProgress = progressService.getEntryProgress(boardNo, entryUserNo);
+        if (entryProgress.isPresent())
             return new ResponseEntity<EntryProgress>(entryProgress.get(), HttpStatus.OK);
-        return new ResponseEntity<EntryProgress>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<EntryProgress>(HttpStatus.OK);
     }
 
     /**

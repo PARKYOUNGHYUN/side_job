@@ -33,7 +33,7 @@ public class FavoriteTagController {
      * @return お気に入りタグ
      */
     @GetMapping("{userNo}")
-    public List<FavoriteTag> getFavoriteTags(@PathVariable("userNo") Long userNo) {
+    public List<FavoriteTag> getFavoriteTags(@PathVariable("userNo") long userNo) {
         return favoriteTagService.getFavoriteTags(userNo);
     }
 

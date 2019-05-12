@@ -40,7 +40,7 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_no")
-    private Long userNo;
+    private long userNo;
 
     @Lob
     @Column(nullable = false)
