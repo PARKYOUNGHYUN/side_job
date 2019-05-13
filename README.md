@@ -35,3 +35,16 @@ Spring Bootの開発に関しては分かっていたので、データベース
 ## 改善したいこと
 テーブル定義に関して、すごく苦手だと感じたので、
 次回からはDBに関する勉強を通じて、データモデリングからはっきり進みたい。
+
+## 開発構築
+### ツール準備
+1. visual studio codeダウンロード
+2. プラグインをインストール(Java Extension Pack, Spring Boot Extension Pack, Lombok Annotations Support for VS Code)
+
+###  Git　リポジトリの取得
+```
+git clone https://github.com/PARKYOUNGHYUN/side_job.git
+```
+
+### 実行
+3. F5押してSpring Bootアプリケーションが起動する
