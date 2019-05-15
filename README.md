@@ -5,6 +5,11 @@
 3. お互いの条件がマッチした場合に取引成立！
 4. 日時を決めてカフェなどでちょっとした楽しい習い事！
 
+## Requirements
+- [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+- [Gradle 4.7](https://gradle.org/)
+- Mysql 8.0.16
+
 ## 得意部分
 Spring BootとJPAを利用して、restAPIを実装した。
 下記のフォルダ内のファイルを利用して、restAPI機能を提供している。（各フォルダ内のソースコードはがにている）
@@ -23,6 +28,11 @@ side_job\restapi\src\main\java\com\restapi\entity
 ```
 side_job\restapi\src\main\java\com\restapi\service
 ```
+## テスト
+postmanを利用して、正常系テスト実施
+
+## ERD
+![erd](https://user-images.githubusercontent.com/12822983/57743551-7cdbdd80-7700-11e9-859b-ee1af235034c.jpg)
 
 ## 工夫点
 Spring Bootの開発に関しては分かっていたので、データベースの設計や、WebAPI設計に合わせて
@@ -37,14 +47,12 @@ Spring Bootの開発に関しては分かっていたので、データベース
 次回からはDBに関する勉強を通じて、データモデリングからはっきり進みたい。
 
 ## 開発構築
-### ツール準備
-1. visual studio codeダウンロード
-2. プラグインをインストール(Java Extension Pack, Spring Boot Extension Pack, Lombok Annotations Support for VS Code)
-
-###  Git　リポジトリの取得
+### ビルド実施
 ```
-git clone https://github.com/PARKYOUNGHYUN/side_job.git
+gradle build
 ```
 
 ### 実行
-3. F5押してSpring Bootアプリケーションが起動する
+```
+gradle bootRun
+``` 
